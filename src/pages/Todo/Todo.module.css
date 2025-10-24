@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --rojo: #d32f2f;
+  --azul: #0077b6;
+  --verde: #388e3c;
+  --rojo-hover: #ef5350;
+  --azul-hover: #0096c7;
+  --verde-hover: #4caf50;
+  --gris-claro: #e9ecef;
+  --gris-texto: #495057;
+  --sombra: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: #f8f9fa;
+  font-family: "Poppins", sans-serif;
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.card-to-do {
+  background-color: #fff;
+  box-shadow: 0px 4px 12px var(--sombra);
+  padding: 25px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 700px;
+  transition: transform 0.2s;
+}
+
+.card-to-do:hover {
+  transform: scale(1.02);
+}
+
+h1 {
+  text-align: center;
+  font-size: 32px;
+  color: var(--azul);
+  margin-bottom: 20px;
+}
+
+.counter-todos {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--gris-claro);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.counter-todos h3 {
+  font-weight: 500;
+  color: var(--gris-texto);
+}
+
+.counter-todos span {
+  color: var(--azul);
+  font-weight: 700;
+  font-size: 24px;
+}
+
+ul {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+ul li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0px 2px 8px var(--sombra);
+  border-radius: 10px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+ul li:hover {
+  background-color: var(--gris-claro);
+}
+
+ul li span {
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--gris-texto);
+  transition: color 0.3s;
+}
+
+ul li form {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-update {
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--gris-texto);
+  width: 100%;
+  outline: none;
+  background-color: transparent;
+}
+
+.container-done {
+  background-color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--verde);
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.container-done.active {
+  background-color: var(--verde);
+  border-color: var(--verde-hover);
+}
+
+.text-decoration-dashed {
+  text-decoration: line-through;
+  color: var(--gris-texto);
+}
+
+.btn-save,
+.btn-delete,
+.btn-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.btn-save {
+  background-color: var(--verde);
+  color: #fff;
+}
+
+.btn-save:hover {
+  background-color: var(--verde-hover);
+  transform: scale(1.1);
+}
+
+.btn-delete {
+  background-color: var(--rojo);
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: var(--rojo-hover);
+  transform: scale(1.1);
+}
+
+.btn-edit {
+  background-color: var(--azul);
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background-color: var(--azul-hover);
+  transform: scale(1.1);
+}
+
+form {
+  display: flex;
+  gap: 15px;
+}
+
+.add-todo h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--gris-texto);
+}
+
+.input-add {
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  box-shadow: 0px 0px 5px var(--sombra);
+  border-radius: 10px;
+  flex: 1;
+  font-size: 17px;
+  color: var(--gris-texto);
+  font-style: italic;
+}
+
+.btn-add {
+  border: none;
+  background-color: var(--azul);
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-size: 17px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-add:hover {
+  background-color: var(--azul-hover);
+  transform: scale(1.05);
+}

@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import About from './pages/About';
 import BtnTrick from './pages/BtnTrick';
 import Login from './pages/Login';
+import Todo from './pages/Todo';
 
 function PublicRoute() {
     const isLogin = !!localStorage.getItem('userId'); // !! convert to boolean
@@ -45,7 +46,8 @@ function Layout() {
             <nav className='foot'>
                 <Link to="/" style={{ marginRight: '10px' }}>HomePage</Link>
                 <Link to="/about" style={{ marginRight: '10px' }}>About</Link>
-                <Link to="/btn/3">Button Trick</Link>
+                <Link to="/btn/3" style={{ marginRight: '10px' }}>Button Trick</Link>
+                <Link to="/todo" style={{ marginLeft: '10px' }}>To-Do List</Link>
                 <button onClick={handleLogout} style={{ marginTop: '20px' }}>
                     Logout
                 </button>
@@ -69,6 +71,7 @@ export default function App() {
                     <Route path="about" element={<About />} />
                     <Route path="btn" element={<BtnTrick />} />
                     <Route path="btn/:num" element={<BtnTrick />} />
+                    <Route path="todo" element={<Todo />} />
                 </Route>
             </Route>
         </Routes>);
