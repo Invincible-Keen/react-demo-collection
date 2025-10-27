@@ -22,12 +22,12 @@ export function TodoUpdate({ todo, handleUpdateTodo }: TodoUpdateProps) {
       });
     }
     setIsEditing(!isEditing);
-    setTimeout(() => inputRef.current?.focus(), 0); // 确保焦点切换
+    setTimeout(() => inputRef.current?.focus(), 0); // focus input after state update
   };
 
   const handleEditClick = () => {
     if (!isEditing) {
-      setNewDescription(todo.description); // 重置为原始值
+      setNewDescription(todo.description); // reset to original if cancelling edit
     }
   };
 

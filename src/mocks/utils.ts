@@ -3,7 +3,7 @@
 // export function toUserDTO(user: User): UserDTO {
 //   return {
 //     ...user,
-//     createdAt: user.createdAt.toISOString() // 转换为字符串
+//     createdAt: user.createdAt.toISOString() // convert Date to ISO string
 //   };
 // }
 

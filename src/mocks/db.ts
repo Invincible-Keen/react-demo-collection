@@ -16,6 +16,6 @@ export const db = factory({
   }
 });
 
-// 初始化测试数据
+// initialize with some mock data
 db.user.create({ id: 1, name: 'John Doe', email: 'john@example.com' });
 db.user.create({ id: 2, name: 'Jane Smith', email: 'jane@example.com' });

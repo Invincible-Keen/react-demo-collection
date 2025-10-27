@@ -21,7 +21,7 @@ export interface ApiError {
 
 // src/types/index.ts
 
-// 数据库模型类型
+// Database user object
 export interface DbUser {
   id: number;
   name: string;
@@ -29,15 +29,15 @@ export interface DbUser {
   createdAt: Date;
 }
 
-// API 传输类型
+// API data transfer object
 export interface UserDTO {
   id: number;
   name: string;
   email: string;
-  createdAt: string; // ISO 字符串格式
+  createdAt: string; // ISO string
 }
 
-// 请求/响应类型
+// Request payload for creating a new user
 export interface CreateUserRequest
   extends Omit<UserDTO, 'id' | 'createdAt'> {
   password: string;
