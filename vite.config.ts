@@ -6,6 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 9527,
+    strictPort: true,
     open: true,
+  },
+  resolve: {
+    alias: {
+      '~': '/src', // use '~' as alias to 'src' folder
+    },
   },
 })

@@ -1,9 +1,9 @@
 import { TodoItem } from "./TodoItem";
-import type { Todo } from "./reducerFunction"; // Import your Todo type
+import type { Todo, UpdateTodoPayload } from "./types"; // Import your Todo type
 
 interface TodoListProps {
   todos: Todo[];
-  onUpdateTodo: (updatedTodo: { id: number; description: string }) => void;
+  onUpdateTodo: (updatedTodo: UpdateTodoPayload) => void;
   onDeleteTodo: (id: number) => void;
   onCompleteTodo: (id: number) => void;
 }

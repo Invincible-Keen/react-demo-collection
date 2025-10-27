@@ -2,13 +2,21 @@ import styles from './Login.module.css';
 import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function Login() {
     const navigate = useNavigate();
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        console.log('Login component mounted');
+
+        return () => {
+            console.log('Login component unmounted');
+        }
+    }, []);
 
     const handleLogin = () => {
         if(userId.trim() === '' || password.trim() === '') {

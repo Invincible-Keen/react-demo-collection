@@ -1,12 +1,12 @@
 import { FaTrash } from "react-icons/fa";
 import { TodoUpdate } from "./TodoUpdate";
-import type { Todo } from "./reducerFunction"; // Import Todo type from reducer
+import type { Todo, UpdateTodoPayload } from "./types";
 import styles from "./Todo.module.css";
 
 // Define component props interface
 interface TodoItemProps {
     todo: Todo;                     // Single todo item data
-    handleUpdateTodo: (updatedTodo: { id: number; description: string }) => void; // Update handler
+    handleUpdateTodo: (updatedTodo: UpdateTodoPayload) => void; // Update handler
     handleDeleteTodo: (id: number) => void;     // Delete handler
     handleCompleteTodo: (id: number) => void;   // Toggle completion handler
 }

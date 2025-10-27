@@ -1,3 +1,5 @@
+import type { Todo, TodoAction } from "./types";
+
 export const reducerFunction = (initialState: Todo[], action : TodoAction) => {
   switch (action.type) {
     case "ADD_TODO":
@@ -22,14 +24,3 @@ export const reducerFunction = (initialState: Todo[], action : TodoAction) => {
       return initialState;
   }
 };
-
-export interface Todo {
-  id: number;
-  description: string;
-  done: boolean;
-}
-export type TodoAction = 
-  | { type: "ADD_TODO"; payload: Todo }
-  | { type: "DELETE_TODO"; payload: number }
-  | { type: "COMPLETE_TODO"; payload: number }
-  | { type: "UPDATE_TODO"; payload: { id: number; description: string } };

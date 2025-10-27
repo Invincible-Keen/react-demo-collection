@@ -1,6 +1,6 @@
 import { useState, useRef, type FormEvent } from "react";
 import { FaEdit, FaSave } from "react-icons/fa";
-import type { Todo } from "./reducerFunction";
+import type { Todo } from "./types";
 import styles from "./Todo.module.css";
 
 interface TodoUpdateProps {

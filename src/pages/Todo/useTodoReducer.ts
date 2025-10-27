@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { reducerFunction } from "./reducerFunction";
+import type { UpdateTodoPayload } from "./types";
 
 export const useTodoReducer = () => {
   const initialState = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -30,7 +31,7 @@ export const useTodoReducer = () => {
     dispatch({ type: "COMPLETE_TODO", payload: id });
   };
 
-  const handleUpdateTodo = (payload: { id: number; description: string }) => {
+  const handleUpdateTodo = (payload: UpdateTodoPayload) => {
     dispatch({
       type: "UPDATE_TODO",
       payload: payload,
@@ -47,8 +48,3 @@ export const useTodoReducer = () => {
     handleUpdateTodo,
   };
 };
-
-// export type UpdateTodoPayload = {
-//   id: number;
-//   description: string;
-// };
