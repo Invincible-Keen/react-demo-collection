@@ -5,6 +5,7 @@ export const db = factory({
     id: primaryKey(Number),
     name: String,
     email: String,
+    password: String,
     createdAt: () => new Date(), // ensure returns Date object
   },
   post: {
@@ -17,5 +18,5 @@ export const db = factory({
 });
 
 // initialize with some mock data
-db.user.create({ id: 1, name: 'John Doe', email: 'john@example.com' });
-db.user.create({ id: 2, name: 'Jane Smith', email: 'jane@example.com' });
+db.user.create({ id: 1, name: 'Keen', email: 'keen@example.com', password: '123' });
+db.user.create({ id: 2, name: 'Admin', email: 'admin@example.com', password: 'adminpass' });

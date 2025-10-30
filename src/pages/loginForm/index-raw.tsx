@@ -1,43 +1,56 @@
-// index.tsx (修改后的登录组件)
 import React, { useState } from 'react';
 import "./login.css";
 import reactLogo from '../../assets/react.svg';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
-    const [error, setError] = useState('');
+
     const navigate = useNavigate();
-    const { login } = useAuth(); 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-        setError(''); // clear error on input change
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
-        
-        const { email, password } = formData;
-        if (!email.trim() || !password.trim()) {
-            setError('Please fill in both email and password');
-            return;
+        console.log('Login form submitted:', formData);
+        if (!formData.email.trim() || !formData.password.trim()) {
+            alert('Please fill in both email and password');
         }
 
         try {
-            await login(email.trim(), password.trim()); // invoke login from context
-            // alert('Login successful!');
-            navigate('/');
+            const response = fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: formData.email.trim(),
+                    password: formData.password.trim(),
+                }),
+            });
+
+            response.then(async res => {
+                const data = await res.json();
+                if (res.ok) {
+                    alert('Login successful!');
+                    console.log('Logged in user:', data.user);
+
+                    navigate('/');
+                } else {
+                    alert(`Login failed: ${data.message}`);
+                }
+            });
+        } catch (error) {
+            console.error('Login error:', error);
+            alert('An error occurred during login. Please try again.');
+        } finally {
             setFormData({ email: '', password: '' });
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'An error occurred during login');
-            console.error('Login error:', err);
         }
     };
 
@@ -50,9 +63,6 @@ export default function LoginForm() {
                 <h2 className="login-title">
                     Log in to your account
                 </h2>
-                
-                {error && <div className="error-message">{error}</div>}
-                
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="form-field">
                         <label htmlFor="email" className="field-label">Email Address</label>

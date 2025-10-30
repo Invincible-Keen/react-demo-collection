@@ -27,6 +27,24 @@ export const handlers = [
         return HttpResponse.json(user);
     }),
 
+    //POST /login
+    http.post('/login', async ({ request }) => {
+        const { email, password } = await request.json() as { email: string; password: string };
+        const user = db.user.findFirst({
+            where: {
+                email: { equals: email.trim() },
+                password: { equals: password.trim() }
+            }
+        });
+        if (!user) {
+            return HttpResponse.json(
+                { message: 'Invalid email or password', code: 401 } as ApiError,
+                { status: 401 }
+            );
+        }
+        return HttpResponse.json({ message: 'Login successful', user });;
+    }),
+
     // POST /users
     http.post('/users', async ({ request }) => {
         const userData = await request.json() as Omit<User, 'id'>;

@@ -6,11 +6,14 @@ import BtnTrick from './pages/BtnTrick';
 import Login from './pages/Login';
 import Todo from './pages/Todo';
 import BtnTrickReducer from './pages/BtnTrickReducer';
+import LoginForm from './pages/loginForm';
+import { useAuth } from './context/AuthContext';
 
 function PublicRoute() {
-    const isLogin = !!localStorage.getItem('userId'); // !! convert to boolean
+    // const isLogin = !!localStorage.getItem('userId'); // !! convert to boolean
+    const { isAuthenticated } = useAuth();
 
-    if (isLogin) {
+    if (isAuthenticated) {
         // already logged in: redirect to home page
         return <Navigate to="/" replace />;
 
@@ -21,22 +24,24 @@ function PublicRoute() {
 }
 
 function PrivateRoute() {
-    const isLogin = !!localStorage.getItem('userId'); // !! convert to boolean
+    // const isLogin = !!localStorage.getItem('userId'); // !! convert to boolean
+    const { isAuthenticated } = useAuth();
 
-    if (isLogin) {
+    if (isAuthenticated) {
         // already logged in: render child routes
         return <Outlet />;
     } else {
         // Not logged in: redirect to login page (replace: true to avoid going back to original page)
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/loginform" replace />;
     }
 }
 
 function Layout() {
-    const handleLogout = () => {
-        localStorage.removeItem('userId');
-        localStorage.removeItem('password');
-        window.location.href = '/login';
+    const { logout } = useAuth();
+
+    const handleLogout = () => {        
+        logout();
+        //window.location.href = '/loginform';
     }
 
     return (
@@ -49,7 +54,7 @@ function Layout() {
                 <Link to="/about" style={{ marginRight: '10px' }}>About</Link>
                 <Link to="/btn/3" style={{ marginRight: '10px' }}>Button Trick</Link>
                 <Link to="/btntrickreducer" style={{ marginLeft: '10px' }}>Btn Trick Reducer</Link>
-                <Link to="/todo" style={{ marginLeft: '10px' }}>To-Do List</Link>                
+                <Link to="/todo" style={{ marginLeft: '10px' }}>To-Do List</Link>
                 <button onClick={handleLogout} style={{ marginTop: '20px' }}>
                     Logout
                 </button>
@@ -63,6 +68,7 @@ export default function App() {
         <Routes>
             <Route element={<PublicRoute />}>
                 <Route path="login" element={<Login />} />
+                <Route path="loginform" element={<LoginForm />} />
             </Route>
 
             <Route element={<PrivateRoute />}>
